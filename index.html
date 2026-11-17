@@ -71,6 +71,8 @@
             font-size: 1rem; min-width: 44px; min-height: 44px; padding: 4px 10px; cursor: pointer; }
   #vcount { font-size: .9rem; color: #ddd; white-space: nowrap; }
   #vstage { flex: 1; overflow: hidden; position: relative; touch-action: none; }
+  #vstage.zoomed { cursor: grab; }
+  #vstage.dragging { cursor: grabbing; }
   #vimg { position: absolute; left: 50%; top: 50%; max-width: none; user-select: none;
           -webkit-user-drag: none; transform-origin: center center; }
   #vctl { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px 16px; color: #fff; }
@@ -103,7 +105,7 @@
     <span class="sp"></span>
     <span id="vcount"></span>
   </div>
-  <div id="vstage"><img id="vimg" alt="チラシ画像"></div>
+  <div id="vstage"><img id="vimg" alt="チラシ画像" draggable="false"></div>
   <div id="vctl">
     <button id="vprev" type="button" aria-label="前のページ">←</button>
     <button id="vminus" type="button" aria-label="縮小">−</button>
@@ -126,6 +128,26 @@ var cur = { pages: [], idx: 0, scale: 1, tx: 0, ty: 0 };
 function applyT() {
   vimg.style.transform = 'translate(-50%,-50%) translate(' + cur.tx + 'px,' + cur.ty + 'px) scale(' + cur.scale + ')';
   vzoom.textContent = Math.round(cur.scale * 100) + '%';
+  vstage.classList.toggle('zoomed', cur.scale > 1);
+}
+function clampPan() {
+  var r = vstage.getBoundingClientRect();
+  var mx = Math.max(0, (vimg.offsetWidth * cur.scale - r.width) / 2);
+  var my = Math.max(0, (vimg.offsetHeight * cur.scale - r.height) / 2);
+  cur.tx = Math.min(mx, Math.max(-mx, cur.tx));
+  cur.ty = Math.min(my, Math.max(-my, cur.ty));
+}
+function zoomAt(clientX, clientY, factor) {
+  var r = vstage.getBoundingClientRect();
+  var vx = clientX - (r.left + r.width / 2), vy = clientY - (r.top + r.height / 2);
+  var ns = Math.min(5, Math.max(1, cur.scale * factor));
+  if (ns === cur.scale) return;
+  var k = ns / cur.scale;
+  cur.tx = vx - (vx - cur.tx) * k;
+  cur.ty = vy - (vy - cur.ty) * k;
+  cur.scale = ns;
+  if (ns === 1) { cur.tx = 0; cur.ty = 0; } else { clampPan(); }
+  applyT();
 }
 function fitImg() {
   var r = vstage.getBoundingClientRect();
@@ -172,7 +194,7 @@ function stepPage(d) {
 }
 document.getElementById('vprev').addEventListener('click', function() { stepPage(-1); });
 document.getElementById('vnext').addEventListener('click', function() { stepPage(1); });
-function setScale(s) { cur.scale = Math.min(5, Math.max(1, s)); if (cur.scale === 1) { cur.tx = 0; cur.ty = 0; } applyT(); }
+function setScale(s) { cur.scale = Math.min(5, Math.max(1, s)); if (cur.scale === 1) { cur.tx = 0; cur.ty = 0; } else { clampPan(); } applyT(); }
 document.getElementById('vplus').addEventListener('click', function() { setScale(cur.scale * 1.25); });
 document.getElementById('vminus').addEventListener('click', function() { setScale(cur.scale / 1.25); });
 document.getElementById('vreset').addEventListener('click', function() { cur.scale = 1; cur.tx = 0; cur.ty = 0; applyT(); });
@@ -182,15 +204,21 @@ document.addEventListener('keydown', function(e) {
   else if (e.key === 'ArrowLeft') stepPage(-1);
   else if (e.key === 'ArrowRight') stepPage(1);
 });
-/* pinch / pan / swipe */
-var pointers = new Map(), pinchD = 0, swipeX = null;
+/* pinch / pan / swipe / wheel — Pointer Events で統一（マウス・タッチ共通） */
+var pointers = new Map(), pinchD = 0, pinchMid = null, swipeX = null;
+vimg.addEventListener('dragstart', function(e) { e.preventDefault(); });
 vstage.addEventListener('pointerdown', function(e) {
-  vstage.setPointerCapture(e.pointerId);
+  if (e.pointerType === 'mouse') e.preventDefault(); /* 画像のネイティブドラッグを抑止 */
+  try { vstage.setPointerCapture(e.pointerId); } catch (err) {}
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
   if (pointers.size === 2) {
     var p = Array.from(pointers.values());
     pinchD = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
-  } else if (pointers.size === 1) { swipeX = e.clientX; }
+    pinchMid = { x: (p[0].x + p[1].x) / 2, y: (p[0].y + p[1].y) / 2 };
+  } else if (pointers.size === 1) {
+    swipeX = e.clientX;
+    if (cur.scale > 1) vstage.classList.add('dragging');
+  }
 });
 vstage.addEventListener('pointermove', function(e) {
   if (!pointers.has(e.pointerId)) return;
@@ -199,25 +227,34 @@ vstage.addEventListener('pointermove', function(e) {
   if (pointers.size === 2) {
     var p = Array.from(pointers.values());
     var nd = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
-    if (pinchD > 0) setScale(cur.scale * nd / pinchD);
-    pinchD = nd;
+    var mid = { x: (p[0].x + p[1].x) / 2, y: (p[0].y + p[1].y) / 2 };
+    if (pinchMid) { cur.tx += mid.x - pinchMid.x; cur.ty += mid.y - pinchMid.y; }
+    if (pinchD > 0) { zoomAt(mid.x, mid.y, nd / pinchD); } else { clampPan(); applyT(); }
+    pinchD = nd; pinchMid = mid;
   } else if (pointers.size === 1 && cur.scale > 1) {
-    cur.tx += e.clientX - prev.x; cur.ty += e.clientY - prev.y; applyT();
+    cur.tx += e.clientX - prev.x; cur.ty += e.clientY - prev.y; clampPan(); applyT();
   }
 });
 function endPointer(e) {
-  if (pointers.size === 1 && cur.scale === 1 && swipeX !== null) {
+  if (pointers.size === 1 && pointers.has(e.pointerId) && cur.scale === 1 && swipeX !== null) {
     var dx = e.clientX - swipeX;
     if (Math.abs(dx) > 60) stepPage(dx < 0 ? 1 : -1);
   }
   pointers.delete(e.pointerId);
-  if (pointers.size < 2) pinchD = 0;
-  if (pointers.size === 0) swipeX = null;
+  if (pointers.size < 2) { pinchD = 0; pinchMid = null; }
+  if (pointers.size === 0) { swipeX = null; vstage.classList.remove('dragging'); }
 }
 vstage.addEventListener('pointerup', endPointer);
 vstage.addEventListener('pointercancel', endPointer);
-vstage.addEventListener('dblclick', function() { setScale(cur.scale > 1 ? 1 : 2.5); });
-vstage.addEventListener('wheel', function(e) { e.preventDefault(); setScale(cur.scale * (e.deltaY < 0 ? 1.1 : 0.9)); }, { passive: false });
+vstage.addEventListener('dblclick', function(e) {
+  if (cur.scale > 1) { cur.scale = 1; cur.tx = 0; cur.ty = 0; applyT(); }
+  else { zoomAt(e.clientX, e.clientY, 2.5); }
+});
+vstage.addEventListener('wheel', function(e) {
+  e.preventDefault();
+  var f = Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0016));
+  zoomAt(e.clientX, e.clientY, f);
+}, { passive: false });
 </script>
 </body>
 </html>

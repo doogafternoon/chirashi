@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>旭川のチラシ（家族用）</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+         background: #f6f4ef; color: #26221c; line-height: 1.55; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 16px 12px 40px; }
+  header h1 { font-size: 1.45rem; margin: 8px 0 2px; }
+  header p { margin: 0 0 4px; color: #6b6455; font-size: .85rem; }
+  h2.sec { font-size: 1.15rem; margin: 28px 0 10px; padding-left: 10px; border-left: 6px solid #e8a13a; }
+  h3.store { font-size: 1.05rem; margin: 22px 0 8px; }
+  h3.store .area { color: #8a8271; font-size: .8rem; font-weight: normal; margin-left: 6px; }
+  .cmp-group { background: #fff; border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;
+               box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .cmp-group h4 { margin: 2px 0 8px; font-size: 1rem; }
+  .cmp-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px;
+             padding: 7px 6px; border-top: 1px solid #eee7d8; }
+  .cmp-row:first-of-type { border-top: none; }
+  .cmp-row.best { background: #fff6da; border-radius: 8px; }
+  .cmp-store { font-weight: 700; min-width: 9.5em; }
+  .cmp-name { flex: 1 1 12em; color: #4c463a; font-size: .92rem; }
+  .cmp-price { font-weight: 800; color: #c0392b; font-size: 1.15rem; white-space: nowrap; }
+  .cmp-meta { flex-basis: 100%; color: #8a8271; font-size: .78rem; }
+  .badge { display: inline-block; background: #e8a13a; color: #fff; font-size: .7rem; font-weight: 700;
+           border-radius: 999px; padding: 1px 8px; vertical-align: middle; }
+  .badge.today { background: #c0392b; }
+  .card { background: #fff; border-radius: 12px; padding: 12px; margin-bottom: 12px;
+          box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .card .ttl { font-weight: 700; font-size: 1rem; }
+  .card .per { color: #6b6455; font-size: .85rem; margin-left: 8px; }
+  .thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .thumbs figure { margin: 0; flex: 1 1 30%; max-width: 32%; position: relative; cursor: zoom-in; }
+  .thumbs img { width: 100%; height: auto; display: block; border: 1px solid #e3ddcf; border-radius: 6px; }
+  .thumbs figcaption { position: absolute; right: 4px; bottom: 4px; background: rgba(0,0,0,.65); color: #fff;
+                       font-size: .68rem; border-radius: 999px; padding: 0 7px; }
+  .noimg { margin-top: 8px; color: #8a8271; font-size: .85rem; }
+  .items { margin: 10px 0 0; padding: 0; list-style: none; }
+  .items li { padding: 6px 2px; border-top: 1px dashed #e3ddcf; font-size: .92rem;
+              display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; }
+  .items .nm { flex: 1 1 12em; }
+  .items .pr { font-weight: 800; color: #c0392b; white-space: nowrap; }
+  .items .nt { flex-basis: 100%; color: #8a8271; font-size: .76rem; }
+  footer { margin-top: 34px; color: #8a8271; font-size: .8rem; text-align: center; }
+  #viewer { position: fixed; inset: 0; background: rgba(12,12,12,.97); z-index: 50; display: none;
+            flex-direction: column; }
+  #viewer.open { display: flex; }
+  #vbar { display: flex; align-items: center; gap: 8px; padding: 10px 12px; color: #fff; }
+  #vbar .sp { flex: 1; }
+  #vbar button, #vctl button { background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;
+            font-size: 1rem; min-width: 44px; min-height: 44px; padding: 4px 10px; cursor: pointer; }
+  #vcount { font-size: .9rem; color: #ddd; white-space: nowrap; }
+  #vstage { flex: 1; overflow: hidden; position: relative; touch-action: none; }
+  #vimg { position: absolute; left: 50%; top: 50%; max-width: none; user-select: none;
+          -webkit-user-drag: none; transform-origin: center center; }
+  #vctl { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px 16px; color: #fff; }
+  #vzoom { min-width: 3.6em; text-align: center; font-size: .9rem; color: #ddd; }
+  @media (max-width: 560px) { .cmp-store { min-width: 100%; } .thumbs figure { flex-basis: 46%; max-width: 48%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>旭川のチラシ</h1>
+  <p>家族で見る用のページです。画像をタップすると大きく見られます（指で広げて拡大できます）。</p>
+</header>
+
+<h2 class="sec">定番品の比較</h2>
+<div class="cmp-group"><h4>たまご</h4><div class="cmp-row best"><span class="cmp-store">コープさっぽろシーナ店 <span class="badge">最安</span></span><span class="cmp-name">不揃いの玉子たち 10コ入</span><span class="cmp-price">280円</span><span class="cmp-meta">11/15〜17 ・ 数量限定</span></div><div class="cmp-row best"><span class="cmp-store">コープさっぽろ春光店 <span class="badge">最安</span></span><span class="cmp-name">不揃いの玉子たち 10コ入</span><span class="cmp-price">280円</span><span class="cmp-meta">11/15〜17 ・ 数量限定</span></div><div class="cmp-row"><span class="cmp-store">ダイイチ末広店</span><span class="cmp-name">大地の子 たまご/赤玉 10個入</span><span class="cmp-price">343円</span><span class="cmp-meta">11/19のみ ・ 全店2,000点限り・お1人様2点限り</span></div><div class="cmp-row"><span class="cmp-store">ダイイチ花咲店</span><span class="cmp-name">大地の子 たまご/赤玉 10個入</span><span class="cmp-price">343円</span><span class="cmp-meta">11/19のみ ・ 全店2,000点限り・お1人様2点限り</span></div><div class="cmp-row"><span class="cmp-store">ダイイチ末広店</span><span class="cmp-name">PG卵 モーニング 10個入</span><span class="cmp-price">365円</span><span class="cmp-meta">11/17のみ ・ 全店500点限り・お1人様2点限り</span></div><div class="cmp-row"><span class="cmp-store">ダイイチ花咲店</span><span class="cmp-name">PG卵 モーニング 10個入</span><span class="cmp-price">365円</span><span class="cmp-meta">11/17のみ ・ 全店500点限り・お1人様2点限り</span></div></div><div class="cmp-group"><h4>トイレットペーパー</h4><div class="cmp-row best"><span class="cmp-store">ダイイチ末広店 <span class="badge">最安</span></span><span class="cmp-name">コアレックス道栄 ハーブの杜 花いっぱい 30mダブル 12ロール</span><span class="cmp-price">438円</span><span class="cmp-meta">11/19のみ ・ 税込437.80円</span></div><div class="cmp-row best"><span class="cmp-store">ダイイチ花咲店 <span class="badge">最安</span></span><span class="cmp-name">コアレックス道栄 ハーブの杜 花いっぱい 30mダブル 12ロール</span><span class="cmp-price">438円</span><span class="cmp-meta">11/19のみ ・ 税込437.80円</span></div><div class="cmp-row"><span class="cmp-store">MEGAドン・キホーテ旭川店</span><span class="cmp-name">王子ネピア 新ネピア アネモネHG 2倍巻 ダブル 12ロール</span><span class="cmp-price">712円</span><span class="cmp-meta">11/13〜19 ・ 税込712円</span></div><div class="cmp-row"><span class="cmp-store">スーパーアークス末広東店</span><span class="cmp-name">王子ネピア アネモネHG トイレットロール 2倍巻 48mダブル 12ロール</span><span class="cmp-price">724円</span><span class="cmp-meta">11/17のみ ・ 税込723.80円・お1人様2点限り</span></div><div class="cmp-row"><span class="cmp-store">イオン旭川西店</span><span class="cmp-name">カミ商事 エルモア ピコ トイレット 2倍巻 12ロール</span><span class="cmp-price">801円</span><span class="cmp-meta">11/10〜17 ・ 税込800.80円</span></div><div class="cmp-row"><span class="cmp-store">ザ・ビッグ永山店</span><span class="cmp-name">王子ネピア ネピネピ2倍巻 12ロール</span><span class="cmp-price">820円</span><span class="cmp-meta">11/14〜17 ・ 税込819.50円・各日お1人さま合わせて2点限り</span></div><div class="cmp-row"><span class="cmp-store">ザ・ビッグ宮前通店</span><span class="cmp-name">王子ネピア ネピネピ2倍巻 12ロール</span><span class="cmp-price">820円</span><span class="cmp-meta">11/14〜17 ・ 税込819.50円・各日お1人さま合わせて2点限り</span></div></div><h2 class="sec">お店ごとのチラシ</h2><h3 class="store">スーパーアークス末広東店<span class="area">旭川市末広東</span></h3><div class="card"><span class="ttl">おすすめ選価一品</span><span class="per">11月16日（月）〜30日（月）</span><div class="thumbs"><figure data-flyer="5" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9815775.jpg" alt="おすすめ選価一品" loading="lazy"></figure></div></div><div class="card"><span class="ttl">45円均一</span><span class="per">11月17日（火）〜18日（水）</span><div class="thumbs"><figure data-flyer="18" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9847719.jpg" alt="45円均一" loading="lazy"></figure></div><ul class="items"><li><span class="nm">トイレットペーパー 王子ネピア アネモネHG トイレットロール 2倍巻 48mダブル 12ロール</span><span class="pr">724円</span><span class="nt">11月17日（火）のみ ・ 税込723.80円・お1人様2点限り</span></li></ul></div><div class="card"><span class="ttl">チラシ（11月12日〜18日）</span><span class="per">11月12日（木）〜18日（水）</span><div class="noimg">（チラシ画像は掲載元で確認できませんでした）</div></div><h3 class="store">MEGAドン・キホーテ旭川店<span class="area">旭川市</span></h3><div class="card"><span class="ttl">驚 ブラックフライデー（11/13号・第1弾）</span><span class="per">11月13日（金）〜19日（木）</span><div class="thumbs"><figure data-flyer="9" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9841860.jpg" alt="驚 ブラックフライデー（11/13号・第1弾）" loading="lazy"></figure></div><ul class="items"><li><span class="nm">トイレットペーパー 王子ネピア 新ネピア アネモネHG 2倍巻 ダブル 12ロール</span><span class="pr">712円</span><span class="nt">税込712円（税抜647円）</span></li></ul></div><h3 class="store">メガセンタートライアル旭川店<span class="area">旭川市</span></h3><div class="card"><span class="ttl">【BLACK FRIDAY】予告</span><span class="per">11月6日（金）〜19日（木）</span><div class="thumbs"><figure data-flyer="10" data-idx="0"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3157923/compressed_12_%E3%82%AF%E3%83%A9%E3%82%B7%E3%83%AB_2026BLFD_%E4%BA%88%E5%91%8A_2600_1847.jpg" alt="【BLACK FRIDAY】予告" loading="lazy"></figure></div></div><h3 class="store">イオン旭川西店<span class="area">旭川市緑町</span></h3><div class="card"><span class="ttl">イオンの火曜市</span><span class="per">11月17日（火）のみ</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="21" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9854457.jpg" alt="イオンの火曜市" loading="lazy"><figcaption>1 / 2枚</figcaption></figure><figure data-flyer="21" data-idx="1"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3167088/compressed_11_17_%E7%81%AB%E6%9B%9C%E5%B8%82_WEB__B4_GMS%E5%90%88%E5%90%8C%E7%89%88%E8%A3%8F.jpg" alt="イオンの火曜市" loading="lazy"><figcaption>2 / 2枚</figcaption></figure></div></div><div class="card"><span class="ttl">イオンのお得祭</span><span class="per">11月10日（火）〜17日（火）</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="3" data-idx="0"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3159660/compressed_11_10_%E7%81%AB%E6%9B%9C%E5%B8%82%E3%81%8A%E5%BE%97%E7%A5%AD_B3_GMS%E9%81%93%E5%8C%97%E7%89%88%E8%A3%8F.jpg" alt="イオンのお得祭" loading="lazy"></figure></div><ul class="items"><li><span class="nm">トイレットペーパー カミ商事 エルモア ピコ トイレット 2倍巻 12ロール</span><span class="pr">801円</span><span class="nt">税込800.80円</span></li></ul></div><div class="card"><span class="ttl">東北うまいもの</span><span class="per">11月12日（木）〜17日（火）</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="20" data-idx="0"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3161779/compressed_%E6%97%AD%E5%B7%9D%E8%A5%BF_1112_B4_%E3%81%8A%E3%82%82%E3%81%A6_%E4%B8%8B%E7%89%88.jpg" alt="東北うまいもの" loading="lazy"><figcaption>1 / 2枚</figcaption></figure><figure data-flyer="20" data-idx="1"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3161780/compressed_%E6%97%AD%E5%B7%9D%E8%A5%BF_1112_B4_%E3%81%86%E3%82%89_%E4%B8%8B%E7%89%88.jpg" alt="東北うまいもの" loading="lazy"><figcaption>2 / 2枚</figcaption></figure></div></div><div class="card"><span class="ttl">イオンのおもちゃ ハッピーホリデー</span><span class="per">11月13日（金）〜12月25日（金）</span><div class="thumbs"><figure data-flyer="7" data-idx="0"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3162421/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_%E8%A1%A81_%E8%A1%A84_%E4%B8%8B%E7%89%88.jpg" alt="イオンのおもちゃ ハッピーホリデー" loading="lazy"><figcaption>1 / 4枚</figcaption></figure><figure data-flyer="7" data-idx="1"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3162422/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_P2_P3_%E4%B8%8B%E7%89%88.jpg" alt="イオンのおもちゃ ハッピーホリデー" loading="lazy"><figcaption>2 / 4枚</figcaption></figure><figure data-flyer="7" data-idx="2"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3162423/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_P4_P5_%E4%B8%8B%E7%89%88.jpg" alt="イオンのおもちゃ ハッピーホリデー" loading="lazy"><figcaption>3 / 4枚</figcaption></figure><figure data-flyer="7" data-idx="3"><img src="https://video.kurashiru.com/production/chirashiru_leaflet/image/3162424/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_P6_P7_%E4%B8%8B%E7%89%88.jpg" alt="イオンのおもちゃ ハッピーホリデー" loading="lazy"><figcaption>4 / 4枚</figcaption></figure></div></div><h3 class="store">コープさっぽろ春光店<span class="area">旭川市春光</span></h3><div class="card"><span class="ttl">チラシ（11月15日〜17日）</span><span class="per">11月15日（日）〜17日（火）</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="12" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9851499.jpg" alt="チラシ（11月15日〜17日）" loading="lazy"></figure></div><ul class="items"><li><span class="nm">たまご コープ 不揃いの玉子たち 10コ入</span><span class="pr">280円</span><span class="nt">税込280円・数量限定</span></li></ul></div><div class="card"><span class="ttl">チラシ（11月12日〜17日）</span><span class="per">11月12日（木）〜17日（火）</span> <span class="badge today">本日まで</span><div class="noimg">（チラシ画像は掲載元で確認できませんでした）</div></div><h3 class="store">ダイイチ末広店<span class="area">旭川市末広</span></h3><div class="card"><span class="ttl">ダイイチの火曜市</span><span class="per">11月17日（火）〜20日（金）</span><div class="thumbs"><figure data-flyer="19" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9854722.jpg" alt="ダイイチの火曜市" loading="lazy"></figure></div><ul class="items"><li><span class="nm">たまご PG卵 モーニング 10個入</span><span class="pr">365円</span><span class="nt">11月17日（火）のみ ・ 税込365.04円・全店500点限り・お1人様2点限り</span></li><li><span class="nm">たまご ダイイチの大地の子 たまご/赤玉 10個入</span><span class="pr">343円</span><span class="nt">11月19日（木）のみ ・ 税込343.44円・全店2,000点限り・お1人様2点限り</span></li><li><span class="nm">トイレットペーパー コアレックス道栄 ハーブの杜 花いっぱい 30mダブル 12ロール</span><span class="pr">438円</span><span class="nt">11月19日（木）のみ ・ 税込437.80円</span></li></ul></div><h3 class="store">ザ・ビッグ宮前通店<span class="area">旭川市宮前通</span></h3><div class="card"><span class="ttl">GG感謝デー/買えば買うほど安さがわかります</span><span class="per">11月14日（土）〜17日（火）</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="8" data-idx="0"><img src="https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_0.jpg" alt="GG感謝デー/買えば買うほど安さがわかります" loading="lazy"><figcaption>1 / 2枚</figcaption></figure><figure data-flyer="8" data-idx="1"><img src="https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_1.jpg" alt="GG感謝デー/買えば買うほど安さがわかります" loading="lazy"><figcaption>2 / 2枚</figcaption></figure></div><ul class="items"><li><span class="nm">トイレットペーパー 王子ネピア ネピネピ2倍巻 12ロール</span><span class="pr">820円</span><span class="nt">税込819.50円・各日お1人さま合わせて2点限り</span></li></ul></div><h3 class="store">コープさっぽろシーナ店<span class="area">旭川市</span></h3><div class="card"><span class="ttl">チラシ（11月15日〜17日）</span><span class="per">11月15日（日）〜17日（火）</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="11" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9851499.jpg" alt="チラシ（11月15日〜17日）" loading="lazy"></figure></div><ul class="items"><li><span class="nm">たまご コープ 不揃いの玉子たち 10コ入</span><span class="pr">280円</span><span class="nt">税込280円・数量限定</span></li></ul></div><div class="card"><span class="ttl">チラシ（11月12日〜17日）</span><span class="per">11月12日（木）〜17日（火）</span> <span class="badge today">本日まで</span><div class="noimg">（チラシ画像は掲載元で確認できませんでした）</div></div><h3 class="store">ダイイチ花咲店<span class="area">旭川市花咲</span></h3><div class="card"><span class="ttl">ダイイチの火曜市</span><span class="per">11月17日（火）〜20日（金）</span><div class="thumbs"><figure data-flyer="17" data-idx="0"><img src="https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9854722.jpg" alt="ダイイチの火曜市" loading="lazy"></figure></div><ul class="items"><li><span class="nm">たまご PG卵 モーニング 10個入</span><span class="pr">365円</span><span class="nt">11月17日（火）のみ ・ 税込365.04円・全店500点限り・お1人様2点限り</span></li><li><span class="nm">たまご ダイイチの大地の子 たまご/赤玉 10個入</span><span class="pr">343円</span><span class="nt">11月19日（木）のみ ・ 税込343.44円・全店2,000点限り・お1人様2点限り</span></li><li><span class="nm">トイレットペーパー コアレックス道栄 ハーブの杜 花いっぱい 30mダブル 12ロール</span><span class="pr">438円</span><span class="nt">11月19日（木）のみ ・ 税込437.80円</span></li></ul></div><h3 class="store">DZマート末広店<span class="area">旭川市末広</span></h3><div class="card"><span class="ttl">チラシ（11月13日〜19日）</span><span class="per">11月13日（金）〜19日（木）</span><div class="noimg">（チラシ画像は掲載元で確認できませんでした）</div></div><h3 class="store">ザ・ビッグ永山店<span class="area">旭川市永山</span></h3><div class="card"><span class="ttl">GG感謝デー/買えば買うほど安さがわかります</span><span class="per">11月14日（土）〜17日（火）</span> <span class="badge today">本日まで</span><div class="thumbs"><figure data-flyer="4" data-idx="0"><img src="https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_0.jpg" alt="GG感謝デー/買えば買うほど安さがわかります" loading="lazy"><figcaption>1 / 2枚</figcaption></figure><figure data-flyer="4" data-idx="1"><img src="https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_1.jpg" alt="GG感謝デー/買えば買うほど安さがわかります" loading="lazy"><figcaption>2 / 2枚</figcaption></figure></div><ul class="items"><li><span class="nm">トイレットペーパー 王子ネピア ネピネピ2倍巻 12ロール</span><span class="pr">820円</span><span class="nt">税込819.50円・各日お1人さま合わせて2点限り</span></li></ul></div><h3 class="store">DZマート春光店<span class="area">旭川市春光</span></h3><div class="card"><span class="ttl">チラシ（11月13日〜19日）</span><span class="per">11月13日（金）〜19日（木）</span><div class="noimg">（チラシ画像は掲載元で確認できませんでした）</div></div>
+<footer>更新： 2026年11月17日（火）09:11 JST<br>価格は税込表示です。売り切れの場合はご容赦ください。</footer>
+</div>
+
+<div id="viewer" aria-hidden="true">
+  <div id="vbar">
+    <button id="vclose" type="button" aria-label="閉じる">× 閉じる</button>
+    <span class="sp"></span>
+    <span id="vcount"></span>
+  </div>
+  <div id="vstage"><img id="vimg" alt="チラシ画像"></div>
+  <div id="vctl">
+    <button id="vprev" type="button" aria-label="前のページ">←</button>
+    <button id="vminus" type="button" aria-label="縮小">−</button>
+    <span id="vzoom">100%</span>
+    <button id="vplus" type="button" aria-label="拡大">＋</button>
+    <button id="vreset" type="button">元に戻す</button>
+    <button id="vnext" type="button" aria-label="次のページ">→</button>
+  </div>
+</div>
+
+<script>
+var FLYERS = {"5": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9815775.jpg"], "18": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9847719.jpg"], "6": [], "9": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9841860.jpg"], "10": ["https://video.kurashiru.com/production/chirashiru_leaflet/image/3157923/compressed_12_%E3%82%AF%E3%83%A9%E3%82%B7%E3%83%AB_2026BLFD_%E4%BA%88%E5%91%8A_2600_1847.jpg"], "21": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9854457.jpg", "https://video.kurashiru.com/production/chirashiru_leaflet/image/3167088/compressed_11_17_%E7%81%AB%E6%9B%9C%E5%B8%82_WEB__B4_GMS%E5%90%88%E5%90%8C%E7%89%88%E8%A3%8F.jpg"], "3": ["https://video.kurashiru.com/production/chirashiru_leaflet/image/3159660/compressed_11_10_%E7%81%AB%E6%9B%9C%E5%B8%82%E3%81%8A%E5%BE%97%E7%A5%AD_B3_GMS%E9%81%93%E5%8C%97%E7%89%88%E8%A3%8F.jpg"], "20": ["https://video.kurashiru.com/production/chirashiru_leaflet/image/3161779/compressed_%E6%97%AD%E5%B7%9D%E8%A5%BF_1112_B4_%E3%81%8A%E3%82%82%E3%81%A6_%E4%B8%8B%E7%89%88.jpg", "https://video.kurashiru.com/production/chirashiru_leaflet/image/3161780/compressed_%E6%97%AD%E5%B7%9D%E8%A5%BF_1112_B4_%E3%81%86%E3%82%89_%E4%B8%8B%E7%89%88.jpg"], "7": ["https://video.kurashiru.com/production/chirashiru_leaflet/image/3162421/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_%E8%A1%A81_%E8%A1%A84_%E4%B8%8B%E7%89%88.jpg", "https://video.kurashiru.com/production/chirashiru_leaflet/image/3162422/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_P2_P3_%E4%B8%8B%E7%89%88.jpg", "https://video.kurashiru.com/production/chirashiru_leaflet/image/3162423/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_P4_P5_%E4%B8%8B%E7%89%88.jpg", "https://video.kurashiru.com/production/chirashiru_leaflet/image/3162424/compressed_AEON_2026%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E3%83%81%E3%83%A9%E3%82%B7_B4_P6_P7_%E4%B8%8B%E7%89%88.jpg"], "12": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9851499.jpg"], "16": [], "19": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9854722.jpg"], "8": ["https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_0.jpg", "https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_1.jpg"], "11": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9851499.jpg"], "14": [], "17": ["https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/9854722.jpg"], "13": [], "4": ["https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_0.jpg", "https://chirashi-guide.com/chirashi-file/2026/11/5/5-8495806949012_1.jpg"], "15": []};
+var viewer = document.getElementById('viewer');
+var vimg = document.getElementById('vimg');
+var vstage = document.getElementById('vstage');
+var vcount = document.getElementById('vcount');
+var vzoom = document.getElementById('vzoom');
+var cur = { pages: [], idx: 0, scale: 1, tx: 0, ty: 0 };
+
+function applyT() {
+  vimg.style.transform = 'translate(-50%,-50%) translate(' + cur.tx + 'px,' + cur.ty + 'px) scale(' + cur.scale + ')';
+  vzoom.textContent = Math.round(cur.scale * 100) + '%';
+}
+function fitImg() {
+  var r = vstage.getBoundingClientRect();
+  var nw = vimg.naturalWidth || r.width, nh = vimg.naturalHeight || r.height;
+  var s = Math.min(r.width / nw, r.height / nh, 1);
+  vimg.style.width = (nw * s) + 'px';
+  vimg.style.height = (nh * s) + 'px';
+}
+function showPage() {
+  vimg.src = cur.pages[cur.idx];
+  cur.scale = 1; cur.tx = 0; cur.ty = 0;
+  vcount.textContent = (cur.idx + 1) + ' / ' + cur.pages.length + '枚';
+  if (vimg.complete && vimg.naturalWidth) { fitImg(); applyT(); }
+  else { vimg.onload = function() { fitImg(); applyT(); }; }
+}
+function openViewer(fid, idx) {
+  cur.pages = FLYERS[fid] || [];
+  if (!cur.pages.length) return;
+  cur.idx = idx || 0;
+  viewer.classList.add('open');
+  viewer.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  try { history.pushState({ viewer: true }, ''); } catch (e) {}
+  showPage();
+}
+function closeViewer() {
+  viewer.classList.remove('open');
+  viewer.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  vimg.removeAttribute('src');
+}
+document.querySelectorAll('.thumbs figure').forEach(function(f) {
+  f.addEventListener('click', function() {
+    openViewer(f.getAttribute('data-flyer'), parseInt(f.getAttribute('data-idx'), 10));
+  });
+});
+document.getElementById('vclose').addEventListener('click', function() {
+  if (history.state && history.state.viewer) { history.back(); } else { closeViewer(); }
+});
+window.addEventListener('popstate', function() { if (viewer.classList.contains('open')) closeViewer(); });
+function stepPage(d) {
+  var n = cur.pages.length; if (!n) return;
+  cur.idx = (cur.idx + d + n) % n; showPage();
+}
+document.getElementById('vprev').addEventListener('click', function() { stepPage(-1); });
+document.getElementById('vnext').addEventListener('click', function() { stepPage(1); });
+function setScale(s) { cur.scale = Math.min(5, Math.max(1, s)); if (cur.scale === 1) { cur.tx = 0; cur.ty = 0; } applyT(); }
+document.getElementById('vplus').addEventListener('click', function() { setScale(cur.scale * 1.25); });
+document.getElementById('vminus').addEventListener('click', function() { setScale(cur.scale / 1.25); });
+document.getElementById('vreset').addEventListener('click', function() { cur.scale = 1; cur.tx = 0; cur.ty = 0; applyT(); });
+document.addEventListener('keydown', function(e) {
+  if (!viewer.classList.contains('open')) return;
+  if (e.key === 'Escape') closeViewer();
+  else if (e.key === 'ArrowLeft') stepPage(-1);
+  else if (e.key === 'ArrowRight') stepPage(1);
+});
+/* pinch / pan / swipe */
+var pointers = new Map(), pinchD = 0, swipeX = null;
+vstage.addEventListener('pointerdown', function(e) {
+  vstage.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pointers.size === 2) {
+    var p = Array.from(pointers.values());
+    pinchD = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+  } else if (pointers.size === 1) { swipeX = e.clientX; }
+});
+vstage.addEventListener('pointermove', function(e) {
+  if (!pointers.has(e.pointerId)) return;
+  var prev = pointers.get(e.pointerId);
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pointers.size === 2) {
+    var p = Array.from(pointers.values());
+    var nd = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+    if (pinchD > 0) setScale(cur.scale * nd / pinchD);
+    pinchD = nd;
+  } else if (pointers.size === 1 && cur.scale > 1) {
+    cur.tx += e.clientX - prev.x; cur.ty += e.clientY - prev.y; applyT();
+  }
+});
+function endPointer(e) {
+  if (pointers.size === 1 && cur.scale === 1 && swipeX !== null) {
+    var dx = e.clientX - swipeX;
+    if (Math.abs(dx) > 60) stepPage(dx < 0 ? 1 : -1);
+  }
+  pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinchD = 0;
+  if (pointers.size === 0) swipeX = null;
+}
+vstage.addEventListener('pointerup', endPointer);
+vstage.addEventListener('pointercancel', endPointer);
+vstage.addEventListener('dblclick', function() { setScale(cur.scale > 1 ? 1 : 2.5); });
+vstage.addEventListener('wheel', function(e) { e.preventDefault(); setScale(cur.scale * (e.deltaY < 0 ? 1.1 : 0.9)); }, { passive: false });
+</script>
+</body>
+</html>
